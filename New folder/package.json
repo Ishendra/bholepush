@@ -1,0 +1,16 @@
+{
+  "name": "bhole",
+  "version": "1.0.0",
+  "description": "bhole ki api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bhole",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "request": "^2.88.0"
+  }
+}
