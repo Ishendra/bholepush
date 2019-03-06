@@ -6,104 +6,9 @@
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-messaging.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    
     <script>
-       /* firebase.initializeApp({
-            apiKey: "AIzaSyA3-ObYYDK2LloI-MM4wD7IBIX7l6Ek5Po",
-            authDomain: "bhole-1214d.firebaseapp.com",
-            databaseURL: "https://bhole-1214d.firebaseio.com",
-            projectId: "bhole-1214d",
-            storageBucket: "bhole-1214d.appspot.com",
-            messagingSenderId: '235280288937'
-        })
-        const messaging = firebase.messaging();
-        function initFirebaseMessagingRegistration() {
-                messaging
-                .requestPermission()
-                .then(function () {
-                    messageElement.innerHTML = "Got notification permission";
-                    console.log("Got notification permission");
-                    return messaging.getToken();
-                })
-                .then(function (token) {
-                    // firebase.collection('bhole').add(token);
-                    // print the token on the HTML page
-                    tokenElement.innerHTML = "Token is " + token;
-                    let data = {element: "barium"};
-
-                    console.log('t ', token);
-                    //localStorage.setItem("token",token)
-                    /*axios.post('/token', {
-            token: token
-        }).then(function (response) {
-            console.log(response);
-        }).catch(function (error) {
-            console.log(error);
-        });*/
-                   // WriteToFile(token);
-                    /*var notification = {
-                    'title': 'You have a new message from user X!',
-                    'body': 'Site Update',
-                    'icon': 'https://URL_TO_LARGER_IMAGE/42-24835548.jpg',
-                    'click_action': 'https://www.pushbox.ga/index.html'
-                    };                  
-                    fetch("https://fcm.googleapis.com/fcm/send", {
-                        method: "POST",
-                        headers: {
-                        "Authorization":"key=AAAANsfMTKk:APA91bFQeu9fOMSzR24KcdZkC7IPBp9TmnpVoHxwh_xnezPTAHc83kPgFEubdXYD51SyOYUPMWv3XQjsa5xNOOvsKuxf0AcHktfwoDlTLEyPek2JsM9lTHXlsbn-CYsaKz3C7DRIgYNY",
-                        "Content-Type": "application/json",
-                        },
-                        
-                        body: JSON.stringify(
-                            {"data": {
-                            "notification": notification
-                        },
-                        "to": token
-                        }
-                      )
-                    }).
-                    then(res => {
-                        console.log(res);
-                    })
-                    .catch(err => { console.log('err ', err) } )
-
-                })
-                .catch(function (err) {
-                    errorElement.innerHTML = "Error: " + err;
-                    console.log("Didn't get notification permission", err);
-                });
-        }
-        messaging.onMessage(payload => {
-            let d = JSON.parse(payload.data.notification);
-            var options = {
-                
-                icon: d.icon,
-                click_action:d.click_action,
-            }
-            var notification = new Notification(d.title, options);
-            notification.onclick = function (event) {
-                    window.location.href = d.click_action;
-                    event.preventDefault();
-                    notification.close();
-            }
-          
-            console.log("Message received. ", payload);
-            notificationElement.innerHTML = notificationElement.innerHTML + " " + payload.data.notification;
-           
-            });
-        messaging.onTokenRefresh(function () {
-            messaging.getToken()
-                .then(function (refreshedToken) {
-                    console.log('Token refreshed.');
-                    tokenElement.innerHTML = "Token is " + refreshedToken;
-                }).catch(function (err) {
-                    errorElement.innerHTML = "Error: " + err;
-                    console.log('Unable to retrieve refreshed token ', err);
-                });
-        });
-*/
-// Initialize Firebase
-  /*Update this config*/
+   
   var config = {
     apiKey: "AIzaSyA3-ObYYDK2LloI-MM4wD7IBIX7l6Ek5Po",
     authDomain: "bhole-1214d.firebaseapp.com",
@@ -137,13 +42,15 @@
                 body: d.body,
                 icon:d.icon,
                 image: d.image,
-            }
+            }            
           
             var notification = new Notification(d.title, options);
+            
             notification.onclick = function (event) {
-                    window.location.href = d.click_action;
-                    event.preventDefault();
-                    notification.close();
+                   // window.location.href = d.click_action;        
+                   event.preventDefault();               
+                   window.open(d.click_action,"_blank");    
+                   notification.close();
             }
           
             notificationElement.innerHTML = notificationElement.innerHTML + " " + payload.data.notification;
@@ -180,7 +87,7 @@
         url: '/token',
         data:{data:currentToken},
         success: function(result) {
-            alert("successfully come back");
+            //alert("successfully come back");
         }
       });
     }
